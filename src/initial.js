@@ -49,7 +49,7 @@ export default class Initial {
   };
 
   _hide() {
-    this.initial.classList.add("hide");
+    this.$initial.classList.add("hide");
   }
   render() {
     this.init();
