@@ -25,6 +25,7 @@ export default class Button {
         this.$result.classList.remove("hide");
 
         this.step = 3;
+        this.$next.innerText = "home";
       }
     });
   }

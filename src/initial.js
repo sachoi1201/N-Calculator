@@ -54,7 +54,9 @@ export default class Initial {
     this.$names.innerHTML = "";
     for (let i = 1; i <= this.personNumber; i++) {
       const $name = document.createElement("input");
+      $name.value = `이름${i}`;
       $name.setAttribute("key", i);
+      nameArray[i] = $name.value;
       this.$names.appendChild($name);
     }
   };
