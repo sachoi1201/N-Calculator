@@ -1,4 +1,5 @@
 "use strict";
+import Info from "./info.js";
 import { nameArray } from "./initial.js";
 
 export default class Button {
@@ -15,6 +16,8 @@ export default class Button {
       if (this.step === 1) {
         this.$initial.classList.add("hide");
         this.$info.classList.remove("hide");
+        const a = new Info();
+        a.render();
 
         this.step = 2;
       } else if (this.step === 2) {
