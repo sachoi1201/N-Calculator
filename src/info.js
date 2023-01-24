@@ -61,6 +61,8 @@ export default class Info {
     for (const name of nameArray) {
       if (name) {
         const $person = document.createElement("input");
+        $person.setAttribute("key", name);
+        $person.classList.add("person");
         $person.placeholder = name;
         $persons.appendChild($person);
       }
@@ -70,7 +72,28 @@ export default class Info {
     const $save = document.createElement("button");
     $save.innerText = "save";
     $save.addEventListener("click", () => {
+      const obj = new Object();
+      obj.cost = new Array(2);
+      obj.cost[0] = cost;
+      obj.cost[1] = costPerson;
+
+      const obj2 = new Object();
+      const persons = document.querySelectorAll(".person");
+      for (const name of nameArray) {
+        if (name) {
+          for (const person of persons) {
+            if (person.getAttribute("key") === name) {
+              obj2[name] = person.value;
+              break;
+            }
+          }
+        }
+      }
+      obj.participants = obj2;
+      countArray[modalKey] = obj;
       $modalInfo.remove();
+
+      console.log(countArray);
     });
 
     $modalInfo.appendChild($cost);
