@@ -1,4 +1,6 @@
 "use strict";
+import { nameArray } from "./initial.js";
+
 export default class Button {
   constructor() {
     this.step = 1;
@@ -9,6 +11,7 @@ export default class Button {
   }
   event() {
     this.$next.addEventListener("click", () => {
+      console.log(nameArray);
       if (this.step === 1) {
         this.$initial.classList.add("hide");
         this.$info.classList.remove("hide");

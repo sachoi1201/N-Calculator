@@ -2,7 +2,10 @@
 
 const countArray = [1, 2, 3, 4, 5];
 const personArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const nameArray = new Array(11);
+export const nameArray = new Array(11);
+export let count = 1;
+export let personNumber = 1;
+
 export default class Initial {
   constructor() {
     this.count = 1;
@@ -30,17 +33,25 @@ export default class Initial {
     // person
     this.$person.addEventListener("input", () => {
       this.personNumber = this.$person.value;
+      personNumber = this.$person.value;
       this.nameMake();
     });
     // count
     this.$count.addEventListener("input", function () {
       this.count = this.value;
+      count = this.value;
+    });
+
+    // name
+    this.$names.addEventListener("input", (event) => {
+      const $name = event.target;
+      const key = $name.getAttribute("key");
+      nameArray[key] = $name.value;
     });
   }
 
   nameMake = () => {
     this.$names.innerHTML = "";
-    console.log(this.personNumber);
     for (let i = 1; i <= this.personNumber; i++) {
       const $name = document.createElement("input");
       $name.setAttribute("key", i);
