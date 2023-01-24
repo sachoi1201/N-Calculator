@@ -1,6 +1,7 @@
 "use strict";
 import Info from "./info.js";
 import { nameArray } from "./initial.js";
+import Result from "./result.js";
 
 export default class Button {
   constructor() {
@@ -12,7 +13,6 @@ export default class Button {
   }
   event() {
     this.$next.addEventListener("click", () => {
-      console.log(nameArray);
       if (this.step === 1) {
         this.$initial.classList.add("hide");
         this.$info.classList.remove("hide");
@@ -26,6 +26,11 @@ export default class Button {
 
         this.step = 3;
         this.$next.innerText = "home";
+
+        const b = new Result();
+        b.render();
+      } else if (this.step === 3) {
+        location.reload();
       }
     });
   }

@@ -92,8 +92,6 @@ export default class Info {
       obj.participants = obj2;
       countArray[modalKey] = obj;
       $modalInfo.remove();
-
-      console.log(countArray);
     });
 
     $modalInfo.appendChild($cost);
