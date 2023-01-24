@@ -1,6 +1,9 @@
 "use strict";
 import { nameArray, count, personNumber } from "./initial.js";
 
+export const countArray = new Array(6);
+export const costArray = new Array(6);
+
 export default class Info {
   constructor() {
     this.$info = document.querySelector(".info");
@@ -26,13 +29,19 @@ export default class Info {
   }
   makeModal(key) {
     const modalKey = key;
-    const modalInfo = document.createElement("div");
-    modalInfo.classList.add("modal__info");
-    modalInfo.setAttribute("key", modalKey);
+    const $modalInfo = document.createElement("div");
+    let cost = 0;
+    let costPerson = nameArray[1];
+
+    $modalInfo.classList.add("modal__info");
+    $modalInfo.setAttribute("key", modalKey);
 
     // cost
     const $cost = document.createElement("input");
     $cost.placeholder = "cost";
+    $cost.addEventListener("input", () => {
+      cost = Number($cost.value);
+    });
 
     // costPerson
     const $costPerson = document.createElement("select");
@@ -43,6 +52,9 @@ export default class Info {
         $costPerson.appendChild(option);
       }
     }
+    $costPerson.addEventListener("input", () => {
+      costPerson = $costPerson.value;
+    });
 
     // person
     const $persons = document.createElement("div");
@@ -53,11 +65,20 @@ export default class Info {
         $persons.appendChild($person);
       }
     }
-    modalInfo.appendChild($cost);
-    modalInfo.appendChild($costPerson);
-    modalInfo.appendChild($persons);
 
-    this.$info.appendChild(modalInfo);
+    // save button
+    const $save = document.createElement("button");
+    $save.innerText = "save";
+    $save.addEventListener("click", () => {
+      $modalInfo.remove();
+    });
+
+    $modalInfo.appendChild($cost);
+    $modalInfo.appendChild($costPerson);
+    $modalInfo.appendChild($persons);
+    $modalInfo.appendChild($save);
+
+    this.$info.appendChild($modalInfo);
   }
   render() {
     this.init();
