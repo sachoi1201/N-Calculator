@@ -15,8 +15,18 @@ export default class Result {
   }
   init() {
     for (const [key, value] of Object.entries(giveObject)) {
+      const $person = document.createElement("div");
       const givePerson = key;
       const getPersonObject = value;
+
+      for (const [key1, value1] of Object.entries(getPersonObject)) {
+        const getPerson = key1;
+        const getCost = value1;
+        $person.innerHTML += `
+            ${givePerson} -> ${getPerson}  : ${getCost} 
+        `;
+      }
+      this.$result.appendChild($person);
     }
   }
   event() {}
