@@ -16,14 +16,19 @@ export default class Result {
   init() {
     for (const [key, value] of Object.entries(giveObject)) {
       const $person = document.createElement("div");
+      $person.classList.add("result__person");
       const givePerson = key;
       const getPersonObject = value;
 
       for (const [key1, value1] of Object.entries(getPersonObject)) {
         const getPerson = key1;
         const getCost = value1;
-        $person.innerHTML += `
+        if (getCost === 0) {
+          continue;
+        }
+        $person.innerHTML += `<div>
             ${givePerson} -> ${getPerson}  : ${getCost} 
+            </div>
         `;
       }
       this.$result.appendChild($person);
@@ -55,9 +60,6 @@ export default class Result {
         }
       }
     }
-    console.log(usedMoneyObject);
-    console.log(expectedMoneyObject);
-
     for (const name of nameArray) {
       if (name) {
         if (usedMoneyObject[name] > expectedMoneyObject[name]) {
@@ -72,9 +74,6 @@ export default class Result {
         }
       }
     }
-
-    console.log(plusMoneyObject);
-    console.log(minusMoneyObject);
 
     for (const [key, value] of Object.entries(minusMoneyObject)) {
       for (const [key1, value1] of Object.entries(plusMoneyObject)) {
@@ -99,8 +98,6 @@ export default class Result {
         }
       }
     }
-
-    console.log(giveObject);
   }
   render() {
     this.calculate();
